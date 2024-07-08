@@ -1,21 +1,14 @@
 import Image from "next/image";
+import InputSearch from "./InputSearch";
 
 const Navbar = () => {
   return (
     <header>
       <div className="nav container">
-        <a href="index.html" className="logo">
+        <a href="/" className="logo">
           Anthesis<span>me</span>
         </a>
-        <div className="search-box">
-          <input
-            type="search"
-            name=""
-            id="search-input"
-            placeholder="Search movie"
-          />
-          <i className="bx bx-search"></i>
-        </div>
+        <InputSearch />
         <a href="#" className="user">
           <Image
             src="/user.jpg"
