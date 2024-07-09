@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const NewAnime = ({ api }) => {
+const AnimeList = ({ api }) => {
   return (
     <>
       <div className="popular-content grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -21,7 +21,9 @@ const NewAnime = ({ api }) => {
               />
               <div className="box-text">
                 <h2 className="movie-title font-bold">{data.title}</h2>
-                <span className="movie-type">{data.genres[0].name}</span>
+                {data.genres.length > 0 && (
+                  <span className="movie-type">{data.genres[0].name}</span>
+                )}
               </div>
             </Link>
           );
@@ -31,4 +33,4 @@ const NewAnime = ({ api }) => {
   );
 };
 
-export default NewAnime;
+export default AnimeList;

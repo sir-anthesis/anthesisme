@@ -5,10 +5,15 @@ import { useRef } from "react";
 const InputSearch = () => {
   const searchRef = useRef();
   const router = useRouter();
+
   const handleSearch = (event) => {
-    event.preventDefault();
     const keyword = searchRef.current.value;
-    router.push(`/search/${keyword}`);
+    if (keyword.length > 0) {
+      if (event.key === "Enter" || event.type === "click") {
+        event.preventDefault();
+        router.push(`/search/${keyword}`);
+      }
+    }
   };
 
   return (
@@ -19,6 +24,7 @@ const InputSearch = () => {
         id="search-input"
         placeholder="Search anime"
         ref={searchRef}
+        onKeyDown={handleSearch}
       />
       <button className="bx bx-search" onClick={handleSearch}></button>
     </div>
