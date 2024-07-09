@@ -16,12 +16,12 @@ const Home = async () => {
 
   return (
     <div>
-      <section className="popular container" id="popular">
+      <section className="popular container">
         <Header title={"Top Animes"} />
         <TopAnime api={topAnime} />
       </section>
 
-      <section className="popular container" id="popular">
+      <section className="popular container">
         <Header title={"On Going Animes"} />
         <AnimeList api={onAnime} />
       </section>

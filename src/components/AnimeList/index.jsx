@@ -5,7 +5,7 @@ const AnimeList = ({ api }) => {
   return (
     <>
       <div className="popular-content grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {api.data.map((data) => {
+        {api.data?.map((data) => {
           return (
             <Link
               key={data.mal_id}
