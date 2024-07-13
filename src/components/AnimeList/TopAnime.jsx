@@ -42,7 +42,7 @@ const TopAnime = ({ api }) => {
               className="movie-box cursor-pointer"
               id="swipe"
             >
-              <Link href={`/${data.mal_id}`}>
+              <Link href={`/anime/${data.mal_id}`}>
                 <img
                   src={data.images.jpg.image_url}
                   width={100}

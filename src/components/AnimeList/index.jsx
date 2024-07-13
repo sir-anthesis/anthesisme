@@ -10,7 +10,7 @@ const AnimeList = ({ api }) => {
             <Link
               key={data.mal_id}
               className="movie-box cursor-pointer"
-              href={`/${data.mal_id}`}
+              href={`/anime/${data.mal_id}`}
             >
               <img
                 src={data.images.jpg.image_url}
