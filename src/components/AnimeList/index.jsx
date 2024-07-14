@@ -21,7 +21,7 @@ const AnimeList = ({ api }) => {
               />
               <div className="box-text">
                 <h2 className="movie-title font-bold">{data.title}</h2>
-                {data.genres.length > 0 && (
+                {data.genres?.length > 0 && (
                   <span className="movie-type">{data.genres[0].name}</span>
                 )}
               </div>

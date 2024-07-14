@@ -8,7 +8,7 @@ const InputSearch = () => {
 
   const handleSearch = (event) => {
     const keyword = searchRef.current.value;
-    if (keyword.length > 0) {
+    if (keyword && !keyword.trim() == "") {
       if (event.key === "Enter" || event.type === "click") {
         event.preventDefault();
         router.push(`/search/${keyword}`);

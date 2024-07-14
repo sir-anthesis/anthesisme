@@ -1,17 +1,25 @@
-import { getAnimeResponse } from "@/app/libs/api-libs";
+import {
+  getAnimeResponse,
+  getNestedResponse,
+  reproduce,
+} from "@/libs/api-libs";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 import VideoPlayer from "@/utilities/VideoPlayer";
-import Image from "next/image";
 
 const Page = async ({ params: { id } }) => {
   const animeDetail = await getAnimeResponse(`anime/${id}`);
-  const animeList = await getAnimeResponse("seasons/now", "limit=20");
+  let recAnime = await getNestedResponse("recommendations/anime", "entry");
+  recAnime = reproduce(recAnime, 12);
   return (
     <>
       <div className="play-container container">
         <img
-          src={animeDetail.data.trailer.images.maximum_image_url}
+          src={
+            animeDetail.data.trailer.images.maximum_image_url
+              ? animeDetail.data.trailer.images.maximum_image_url
+              : animeDetail.data.images.webp.large_image_url
+          }
           alt=""
           className="play-img rounded"
         />
@@ -61,10 +69,12 @@ const Page = async ({ params: { id } }) => {
         </p>
       </div>
 
-      <div className="container pt-20">
-        <Header title={"Others Animes"} />
-        <AnimeList api={animeList} />
-      </div>
+      <section>
+        <div className="container">
+          <Header title={"Others Animes"} />
+          <AnimeList api={recAnime} />
+        </div>
+      </section>
     </>
   );
 };
