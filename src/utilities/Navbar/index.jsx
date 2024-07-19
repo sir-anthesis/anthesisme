@@ -1,7 +1,12 @@
 import Image from "next/image";
 import InputSearch from "./InputSearch";
+import AuthButton from "./AuthButton";
+import Link from "next/link";
+import { authUserSession } from "@/libs/auth";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const user = await authUserSession();
+
   return (
     <header>
       <div className="nav container">
@@ -9,15 +14,16 @@ const Navbar = () => {
           Anthesis<span>me</span>
         </a>
         <InputSearch />
-        <a href="#" className="user">
-          <Image
-            src="/user.jpg"
-            alt=""
-            className="user-img"
-            width={100}
-            height={100}
-          />
-        </a>
+        {!user ? (
+          <Link
+            href={"/api/auth/signin"}
+            className="px-4 py-2 bg-orange-400 rounded font-bold"
+          >
+            Sign In
+          </Link>
+        ) : (
+          <AuthButton image={user.image} />
+        )}
         <div className="navbar">
           <a href="#home" className="nav-link nav-active">
             <i className="bx bx-home"></i>
